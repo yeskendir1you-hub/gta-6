@@ -2,247 +2,359 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Обратный отсчёт до GTA VI</title>
-<meta name="description" content="Неофициальный фанатский таймер обратного отсчёта до выхода GTA VI 19 ноября 2026 года.">
+<meta name="description" content="Неофициальный фанатский таймер обратного отсчёта до выхода GTA VI 19 ноября 2026 года: опросы, трейлеры, факты, хронология и мини-игра.">
+<meta name="theme-color" content="#07040f">
+<meta property="og:title" content="Обратный отсчёт до GTA VI">
+<meta property="og:description" content="Сколько осталось до выхода GTA VI? Таймер, опросы, трейлеры и мини-игра.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe46b'/%3E%3Cstop offset='.5' stop-color='%23ff9a3d'/%3E%3Cstop offset='1' stop-color='%23ff3d9a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2307040f'/%3E%3Ccircle cx='32' cy='36' r='20' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0b0716;
-    --text: #fff6fb;
-    --muted: #c9b8d6;
-    --pink: #ff3d9a;
-    --orange: #ff9a3d;
-    --cyan: #3de0ff;
-    --card: rgba(255, 255, 255, 0.06);
-    --card-border: rgba(255, 255, 255, 0.14);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { min-height: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Inter", system-ui, sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* Закатное небо с солнцем и неоновой сеткой */
-  .sky {
-    position: fixed; inset: 0; z-index: -2;
-    background:
-      radial-gradient(ellipse at 50% 120%, rgba(255, 61, 154, 0.55), transparent 60%),
-      linear-gradient(180deg, #0b0716 0%, #2a0f3d 45%, #6b1d5c 70%, #ff6a5c 100%);
-  }
-  .sun {
-    position: fixed; left: 50%; bottom: 22vh; z-index: -1;
-    width: min(70vw, 520px); aspect-ratio: 1; transform: translateX(-50%);
-    border-radius: 50%;
-    background: linear-gradient(180deg, #ffe46b 0%, var(--orange) 45%, var(--pink) 100%);
-    -webkit-mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px) 0 55% / 100% 100% no-repeat,
-                  linear-gradient(#000, #000) 0 0 / 100% 55% no-repeat;
-            mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px) 0 55% / 100% 100% no-repeat,
-                  linear-gradient(#000, #000) 0 0 / 100% 55% no-repeat;
-    filter: drop-shadow(0 0 60px rgba(255, 106, 92, 0.7));
-    opacity: 0.85;
-  }
-  .grid {
-    position: fixed; left: -50%; right: -50%; bottom: 0; height: 24vh; z-index: -1;
-    background:
-      linear-gradient(transparent 0 96%, rgba(61, 224, 255, 0.6) 96%) 0 0 / 100% 40px,
-      linear-gradient(90deg, transparent 0 98%, rgba(61, 224, 255, 0.6) 98%) 0 0 / 60px 100%,
-      linear-gradient(180deg, #1a0a2e, #0b0716);
-    transform: perspective(300px) rotateX(55deg);
-    transform-origin: bottom;
-    animation: drive 1.6s linear infinite;
-  }
-  @keyframes drive { to { background-position: 0 40px, 0 0, 0 0; } }
-  .palms { position: fixed; bottom: 20vh; z-index: -1; width: 100%; height: 40vh; pointer-events: none; }
-  .palm { position: absolute; bottom: 0; fill: #0b0716; opacity: 0.95; }
-
-  main {
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 28px;
-    padding: 48px 16px 120px;
-    text-align: center;
-  }
-  .badge {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--cyan);
-    border: 1px solid rgba(61, 224, 255, 0.4);
-    padding: 6px 14px; border-radius: 999px;
-    background: rgba(11, 7, 22, 0.5);
-  }
-  h1 {
-    font-family: "Anton", Impact, sans-serif;
-    font-weight: 400;
-    font-size: clamp(64px, 16vw, 180px);
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    background: linear-gradient(180deg, #fff 0%, #ffd0e6 40%, var(--pink) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 0 24px rgba(255, 61, 154, 0.55));
-  }
-  .subtitle {
-    font-size: clamp(16px, 2.4vw, 20px); color: #fff; max-width: 560px;
-    text-shadow: 0 1px 2px rgba(11, 7, 22, 0.9), 0 0 16px rgba(11, 7, 22, 0.8);
-  }
-  .subtitle strong { color: var(--text); }
-
-  .countdown {
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(8px, 2vw, 18px);
-    width: 100%; max-width: 760px;
-  }
-  .unit {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 18px;
-    padding: clamp(14px, 3vw, 26px) 6px;
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 0 0 1px rgba(255, 61, 154, 0.08), 0 20px 50px rgba(0, 0, 0, 0.35);
-  }
-  .num {
-    font-family: "Anton", Impact, sans-serif;
-    font-size: clamp(40px, 10vw, 96px);
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    color: #fff;
-    text-shadow: 0 0 18px rgba(61, 224, 255, 0.55);
-  }
-  .label {
-    margin-top: 8px;
-    font-size: clamp(11px, 1.8vw, 14px); font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .released {
-    display: none;
-    font-family: "Anton", Impact, sans-serif;
-    font-size: clamp(40px, 9vw, 88px);
-    color: #fff;
-    text-shadow: 0 0 30px var(--pink);
-    animation: pulse 1.4s ease-in-out infinite;
-  }
-  @keyframes pulse { 50% { transform: scale(1.05); } }
-  body.is-out .countdown { display: none; }
-  body.is-out .released { display: block; }
-
-  .info {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-  }
-  .chip {
-    font-size: 14px; font-weight: 600;
-    padding: 10px 16px; border-radius: 12px;
-    background: rgba(11, 7, 22, 0.55);
-    border: 1px solid var(--card-border);
-  }
-  .chip span { color: var(--orange); }
-
-  footer {
-    position: fixed; left: 0; right: 0; bottom: 0;
-    padding: 12px 16px;
-    font-size: 12px; color: var(--muted); text-align: center;
-    background: linear-gradient(transparent, rgba(11, 7, 22, 0.9) 40%);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .grid, .released { animation: none; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<nav class="nav" aria-label="Разделы">
+  <a class="logo" href="#top">VI</a>
+  <a href="#together">Ждём вместе</a>
+  <a href="#polls">Опросы</a>
+  <a href="#trailers">Трейлеры</a>
+  <a href="#facts">Факты</a>
+  <a href="#game">Игра</a>
+  <button class="music-btn" id="musicBtn" aria-pressed="false">
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span id="musicLabel">Музыка</span>
+  </button>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
   <div class="sky"></div>
+  <canvas class="stars" id="stars" aria-hidden="true"></canvas>
   <div class="sun"></div>
-  <svg class="palms" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <g class="palm">
-      <path d="M90 400 C100 300 120 220 150 150 L158 152 C130 225 112 305 104 400 Z"/>
-      <path d="M152 150 C110 120 60 130 20 170 C70 140 110 140 150 160 Z"/>
-      <path d="M152 150 C120 100 80 80 30 90 C80 100 120 120 150 156 Z"/>
-      <path d="M152 150 C170 100 210 80 260 90 C210 100 180 120 156 156 Z"/>
-      <path d="M152 150 C200 125 250 135 290 175 C240 145 200 145 156 160 Z"/>
-      <path d="M152 150 C150 100 160 60 190 30 C170 70 162 110 158 152 Z"/>
-    </g>
-    <g class="palm" transform="translate(1200 0) scale(-1 1)">
-      <path d="M90 400 C100 300 120 220 150 150 L158 152 C130 225 112 305 104 400 Z"/>
-      <path d="M152 150 C110 120 60 130 20 170 C70 140 110 140 150 160 Z"/>
-      <path d="M152 150 C120 100 80 80 30 90 C80 100 120 120 150 156 Z"/>
-      <path d="M152 150 C170 100 210 80 260 90 C210 100 180 120 156 156 Z"/>
-      <path d="M152 150 C200 125 250 135 290 175 C240 145 200 145 156 160 Z"/>
-      <path d="M152 150 C150 100 160 60 190 30 C170 70 162 110 158 152 Z"/>
+
+  <svg class="city" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="cityG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2a0f3d"/><stop offset="1" stop-color="#14071f"/>
+      </linearGradient>
+    </defs>
+    <path fill="url(#cityG)" d="M0 200V150h40v-30h30v40h25V90h40v70h20v-50h35v-30h30v80h25V60h20V40h10v20h20v100h30v-70h45v90h20V110h40v-40h15v40h35v80h25V80h35v-20h20v20h30v120h20v-60h40v-60h15V40h10v40h20v120h35v-90h30v50h30V70h45v130h20v-80h30v-30h25v110h35V100h40v100h30v-60h40v-40h30v100h35v-70h30v70Z"/>
+    <g fill="#ffcf6b" opacity=".55">
+      <rect x="148" y="70" width="4" height="6"/><rect x="160" y="90" width="4" height="6"/><rect x="290" y="80" width="4" height="6"/>
+      <rect x="302" y="110" width="4" height="6"/><rect x="460" y="90" width="4" height="6"/><rect x="560" y="70" width="4" height="6"/>
+      <rect x="572" y="96" width="4" height="6"/><rect x="740" y="60" width="4" height="6"/><rect x="752" y="88" width="4" height="6"/>
+      <rect x="920" y="90" width="4" height="6"/><rect x="1010" y="120" width="4" height="6"/><rect x="1100" y="110" width="4" height="6"/>
     </g>
   </svg>
-  <div class="grid"></div>
 
-  <main>
-    <div class="badge">Фанатский обратный отсчёт</div>
-    <h1>GTA VI</h1>
-    <p class="subtitle">До выхода игры осталось совсем немного. Дата релиза: <strong>19 ноября 2026</strong>.</p>
+  <svg class="palms" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <g id="palm">
+        <path d="M100 420 C108 320 126 230 160 150 L170 154 C138 232 122 322 116 420 Z"/>
+        <path d="M164 150 C120 116 64 124 18 170 C72 138 116 136 160 160 Z"/>
+        <path d="M164 150 C130 96 84 74 30 84 C86 96 128 118 160 158 Z"/>
+        <path d="M164 150 C182 96 226 74 282 84 C226 96 192 118 168 158 Z"/>
+        <path d="M164 150 C214 122 268 132 310 178 C256 142 214 142 168 162 Z"/>
+        <path d="M164 150 C160 96 172 54 204 22 C182 64 172 108 170 154 Z"/>
+        <path d="M164 150 C150 104 120 78 92 66 C126 90 146 118 160 156 Z"/>
+      </g>
+    </defs>
+    <g fill="#07040f">
+      <use href="#palm"/>
+      <use href="#palm" transform="translate(60 120) scale(.7)"/>
+      <use href="#palm" transform="translate(1200 0) scale(-1 1)"/>
+      <use href="#palm" transform="translate(1140 120) scale(-.7 .7)"/>
+    </g>
+  </svg>
+  <div class="grid-floor"></div>
+  <div class="hero-fade"></div>
 
-    <div class="countdown" role="timer" aria-live="off">
-      <div class="unit"><div class="num" id="d">--</div><div class="label" id="ld">дней</div></div>
-      <div class="unit"><div class="num" id="h">--</div><div class="label" id="lh">часов</div></div>
-      <div class="unit"><div class="num" id="m">--</div><div class="label" id="lm">минут</div></div>
-      <div class="unit"><div class="num" id="s">--</div><div class="label" id="ls">секунд</div></div>
+  <span class="badge"><span class="dot"></span>Фанатский обратный отсчёт</span>
+  <h1 class="title">GTA VI</h1>
+  <p class="lead">Добро пожаловать в Леониду. Релиз — <strong>19 ноября 2026</strong>, PS5 и Xbox Series X|S.</p>
+
+  <div class="countdown" role="timer" aria-label="Время до выхода GTA VI">
+    <div class="unit"><div class="num" id="d">--</div><div class="unit-label" id="ld">дней</div></div>
+    <div class="unit"><div class="num" id="h">--</div><div class="unit-label" id="lh">часов</div></div>
+    <div class="unit"><div class="num" id="m">--</div><div class="unit-label" id="lm">минут</div></div>
+    <div class="unit"><div class="num" id="s">--</div><div class="unit-label" id="ls">секунд</div></div>
+  </div>
+
+  <label class="tz">
+    Считать до полуночи по времени:
+    <select class="select" id="tzSelect">
+      <option value="local">моё время</option>
+      <option value="Europe/Moscow">Москва</option>
+      <option value="Asia/Almaty">Алматы / Астана</option>
+      <option value="Asia/Tashkent">Ташкент</option>
+      <option value="Europe/Kyiv">Киев</option>
+      <option value="Europe/Minsk">Минск</option>
+      <option value="Europe/Berlin">Берлин</option>
+      <option value="Europe/London">Лондон</option>
+      <option value="America/New_York">Нью-Йорк</option>
+      <option value="America/Los_Angeles">Лос-Анджелес</option>
+    </select>
+  </label>
+
+  <div class="released">
+    <h2>GTA VI уже вышла!</h2>
+    <p>Хватит смотреть на таймер — пора в Вайс-Сити.</p>
+  </div>
+
+  <a class="scroll-hint" href="#together">Листай</a>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<main>
+  <!-- ================= ЖДЁМ ВМЕСТЕ ================= -->
+  <section class="section" id="together">
+    <div class="glow-blob" style="background:var(--violet);left:-200px;top:0"></div>
+    <div class="wrap">
+      <span class="kicker reveal">Ожидание в цифрах</span>
+      <h2 class="h2 reveal">Сколько это — <em>«осталось чуть-чуть»</em>?</h2>
+      <p class="sub reveal">Оставшееся время, переведённое в понятные вещи. Цифры обновляются в реальном времени.</p>
+
+      <div class="fun-grid">
+        <div class="card fun reveal"><div class="emoji">🎬</div><div class="big" id="funMovies">–</div><p>фильмов по 2 часа подряд</p></div>
+        <div class="card fun reveal"><div class="emoji">🎧</div><div class="big" id="funSongs">–</div><p>прослушиваний трека на 3:30</p></div>
+        <div class="card fun reveal"><div class="emoji">📺</div><div class="big" id="funEpisodes">–</div><p>серий сериала по 45 минут</p></div>
+        <div class="card fun reveal"><div class="emoji">💓</div><div class="big" id="funBeats">–</div><p>ударов сердца в спокойном режиме</p></div>
+      </div>
+
+      <div class="actions">
+        <div class="card reveal">
+          <h3>Позови друзей ждать вместе</h3>
+          <p class="muted">Отправь ссылку — пусть тоже следят за таймером.</p>
+          <div class="share-row">
+            <a class="btn" id="shareTg" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1 1.4 11.6c-1-.3-1.1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5Z"/></svg>Telegram</a>
+            <a class="btn" id="shareWa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.3-.5.1-1.2.1-1.9-.1a17 17 0 0 1-1.7-.7 13.4 13.4 0 0 1-5.1-4.5c-.4-.5-1.2-1.6-1.2-3.1 0-1.4.8-2.2 1-2.5.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.4Z"/></svg>WhatsApp</a>
+            <a class="btn" id="shareVk" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.8 18C6.6 18 3.1 13.8 3 6.8h3.1c.1 5.1 2.4 7.3 4.2 7.7V6.8h2.9v4.4c1.8-.2 3.7-2.2 4.3-4.4h2.9a8.6 8.6 0 0 1-3.9 5.6 8.9 8.9 0 0 1 4.6 5.6h-3.2a5.6 5.6 0 0 0-4.7-4V18h-.4Z"/></svg>VK</a>
+            <button class="btn" id="shareCopy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Копировать</button>
+          </div>
+          <div class="share-row">
+            <button class="btn btn-primary" id="calBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+              Добавить релиз в календарь</button>
+          </div>
+        </div>
+        <div class="card visitors reveal">
+          <div>
+            <h3>Фанатов уже заглянуло</h3>
+            <p class="muted" id="visitorsNote">Считаем…</p>
+          </div>
+          <div class="big" id="visitors">—</div>
+        </div>
+      </div>
     </div>
-    <div class="released">GTA VI УЖЕ ВЫШЛА!</div>
+  </section>
 
-    <div class="info">
-      <div class="chip">Платформы: <span>PS5 · Xbox Series X|S</span></div>
-      <div class="chip">Место действия: <span>штат Леонида</span></div>
+  <!-- ================= ОПРОСЫ ================= -->
+  <section class="section" id="polls">
+    <div class="glow-blob" style="background:var(--pink);right:-200px;top:80px"></div>
+    <div class="wrap">
+      <span class="kicker reveal">Голосование</span>
+      <h2 class="h2 reveal">Твой выбор <em>в день релиза</em></h2>
+      <p class="sub reveal">Проголосуй, чтобы увидеть, что выбрали остальные. Один голос на опрос.</p>
+
+      <div class="polls">
+        <div class="card reveal poll" data-poll="hero">
+          <h3>За кого первым делом?</h3>
+          <p class="muted">Двое героев, одна криминальная история.</p>
+          <div class="poll-options">
+            <button class="opt" data-opt="lucia"><span class="fill"></span><span class="name">Люсия</span><span class="pct">0%</span></button>
+            <button class="opt" data-opt="jason"><span class="fill"></span><span class="name">Джейсон</span><span class="pct">0%</span></button>
+          </div>
+          <p class="poll-note"></p>
+        </div>
+        <div class="card reveal poll" data-poll="platform">
+          <h3>Где будешь играть?</h3>
+          <p class="muted">На старте игра выходит на двух платформах.</p>
+          <div class="poll-options">
+            <button class="opt" data-opt="ps5"><span class="fill"></span><span class="name">PlayStation 5</span><span class="pct">0%</span></button>
+            <button class="opt" data-opt="xbox"><span class="fill"></span><span class="name">Xbox Series X|S</span><span class="pct">0%</span></button>
+            <button class="opt" data-opt="pc"><span class="fill"></span><span class="name">Подожду PC <small>когда-нибудь</small></span><span class="pct">0%</span></button>
+          </div>
+          <p class="poll-note"></p>
+        </div>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    Неофициальный фанатский сайт. Не связан с Rockstar Games или Take-Two Interactive.
-    Таймер считает до полуночи 19 ноября 2026 по вашему местному времени.
-  </footer>
+  <!-- ================= ТРЕЙЛЕРЫ ================= -->
+  <section class="section" id="trailers">
+    <div class="wrap">
+      <span class="kicker reveal">Смотреть</span>
+      <h2 class="h2 reveal">Официальные <em>трейлеры</em></h2>
+      <p class="sub reveal">Видео загружаются с YouTube-канала Rockstar Games только после нажатия.</p>
 
-<script>
-  // Дата релиза: полночь 19 ноября 2026 по местному времени посетителя.
-  // Если дату перенесут, достаточно поменять эту строку.
-  const RELEASE = new Date(2026, 10, 19, 0, 0, 0);
+      <div class="trailers">
+        <div class="reveal">
+          <div class="video" data-yt="QdBZY2fkU-0">
+            <button class="poster" aria-label="Смотреть трейлер 1">
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>
+              <span class="tag">Декабрь 2023</span>
+              <span class="vt">Трейлер 1</span>
+            </button>
+          </div>
+          <a class="yt-link" href="https://www.youtube.com/watch?v=QdBZY2fkU-0" target="_blank" rel="noopener">Открыть на YouTube ↗</a>
+        </div>
+        <div class="reveal">
+          <div class="video" data-yt="VQRLujxTm3c">
+            <button class="poster" aria-label="Смотреть трейлер 2">
+              <span class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span>
+              <span class="tag">Май 2025</span>
+              <span class="vt">Трейлер 2</span>
+            </button>
+          </div>
+          <a class="yt-link" href="https://www.youtube.com/watch?v=VQRLujxTm3c" target="_blank" rel="noopener">Открыть на YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  const el = id => document.getElementById(id);
-  const pad = n => String(n).padStart(2, "0");
+  <!-- ================= ФАКТЫ ================= -->
+  <section class="section" id="facts">
+    <div class="glow-blob" style="background:var(--orange);left:-180px;bottom:0"></div>
+    <div class="wrap">
+      <span class="kicker reveal">Что известно</span>
+      <h2 class="h2 reveal">Коротко <em>об игре</em></h2>
 
-  // Русское склонение: 1 день, 2 дня, 5 дней
-  function plural(n, one, few, many) {
-    const m10 = n % 10, m100 = n % 100;
-    if (m10 === 1 && m100 !== 11) return one;
-    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
-    return many;
-  }
+      <div class="facts">
+        <div class="card fact wide reveal">
+          <div class="ico">🌴</div>
+          <h3>Штат Леонида</h3>
+          <p>Вымышленный солнечный штат, вдохновлённый Флоридой: пляжи, болота, ключи-острова и неоновые улицы. Сердце карты — возвращение Вайс-Сити.</p>
+          <div class="deco">VC</div>
+        </div>
+        <div class="card fact reveal">
+          <div class="ico">👥</div>
+          <h3>Два героя</h3>
+          <p>Люсия и Джейсон — пара, которая оказывается втянута в криминальный мир Леониды.</p>
+        </div>
+        <div class="card fact reveal">
+          <div class="ico">🎮</div>
+          <h3>Платформы</h3>
+          <p>На старте — PlayStation 5 и Xbox Series X|S. Версия для PC официально не анонсирована.</p>
+        </div>
+        <div class="card fact reveal">
+          <div class="ico">📅</div>
+          <h3>Дата релиза</h3>
+          <p>19 ноября 2026 года — после двух переносов.</p>
+        </div>
+        <div class="card fact reveal">
+          <div class="ico">🏙️</div>
+          <h3>Серия</h3>
+          <p>Шестая номерная часть. Предыдущая вышла в 2013 году — ожидание длилось больше 13 лет.</p>
+          <div class="deco">13</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  function tick() {
-    const diff = RELEASE - Date.now();
-    if (diff <= 0) {
-      document.body.classList.add("is-out");
-      document.title = "GTA VI уже вышла!";
-      clearInterval(timer);
-      return;
-    }
-    const total = Math.floor(diff / 1000);
-    const d = Math.floor(total / 86400);
-    const h = Math.floor(total % 86400 / 3600);
-    const m = Math.floor(total % 3600 / 60);
-    const s = total % 60;
+  <!-- ================= ХРОНОЛОГИЯ ================= -->
+  <section class="section" id="timeline">
+    <div class="wrap">
+      <span class="kicker reveal">Долгая дорога</span>
+      <h2 class="h2 reveal">Хронология <em>ожидания</em></h2>
 
-    el("d").textContent = d;
-    el("h").textContent = pad(h);
-    el("m").textContent = pad(m);
-    el("s").textContent = pad(s);
-    el("ld").textContent = plural(d, "день", "дня", "дней");
-    el("lh").textContent = plural(h, "час", "часа", "часов");
-    el("lm").textContent = plural(m, "минута", "минуты", "минут");
-    el("ls").textContent = plural(s, "секунда", "секунды", "секунд");
-  }
+      <div class="timeline">
+        <div class="tl reveal">
+          <div class="when">Февраль 2022</div>
+          <h3>Разработка подтверждена</h3>
+          <p>Rockstar официально сообщает, что работает над следующей частью серии.</p>
+        </div>
+        <div class="tl reveal">
+          <div class="when">Декабрь 2023</div>
+          <h3>Первый трейлер и окно «2025»</h3>
+          <p>Ролик бьёт рекорды просмотров на YouTube, игре назначают выход в 2025 году.</p>
+        </div>
+        <div class="tl moved reveal">
+          <div class="when">Май 2025</div>
+          <h3>Перенос на 26 мая 2026</h3>
+          <p>Игру переносят из 2025 года и впервые называют точную дату. Вскоре выходит второй трейлер.</p>
+          <span class="pill">Перенос №1</span>
+        </div>
+        <div class="tl moved reveal">
+          <div class="when">Ноябрь 2025</div>
+          <h3>Перенос на 19 ноября 2026</h3>
+          <p>Ещё полгода на полировку — и окончательная дата.</p>
+          <span class="pill">Перенос №2</span>
+        </div>
+        <div class="tl final reveal">
+          <div class="when">19 ноября 2026</div>
+          <h3>Релиз</h3>
+          <p id="tlFinal">Совсем скоро. Таймер — наверху страницы.</p>
+          <span class="pill">Финиш</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  const timer = setInterval(tick, 1000);
-  tick();
-</script>
+  <!-- ================= МИНИ-ИГРА ================= -->
+  <section class="section" id="game">
+    <div class="glow-blob" style="background:var(--cyan);right:-200px;top:40px"></div>
+    <div class="wrap">
+      <span class="kicker reveal">Пока ждёшь</span>
+      <h2 class="h2 reveal">Неоновая <em>трасса</em></h2>
+      <p class="sub reveal">Мчись по ночному шоссе, уворачивайся от машин и собирай звёзды. Чем дальше — тем быстрее.</p>
+
+      <div class="game-wrap reveal">
+        <div class="game-box">
+          <canvas id="gameCanvas" width="480" height="600" aria-label="Мини-игра: неоновая трасса"></canvas>
+          <div class="touch-ctrl" id="touchCtrl" hidden>
+            <button aria-label="Влево" data-dir="-1"></button>
+            <button aria-label="Вправо" data-dir="1"></button>
+          </div>
+          <div class="game-overlay" id="gameOverlay">
+            <h3 id="goTitle">Неоновая трасса</h3>
+            <p id="goText">Три полосы, бесконечная ночь и ноль правил дорожного движения.</p>
+            <button class="btn btn-primary" id="gameStart">Поехали</button>
+          </div>
+        </div>
+        <div class="game-side">
+          <div class="card stat"><div class="label">Очки</div><div class="val grad" id="score">0</div></div>
+          <div class="card stat"><div class="label">Рекорд</div><div class="val" id="best">0</div></div>
+          <div class="card help">
+            <div class="label" style="font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)">Управление</div>
+            <div class="keys"><kbd>←</kbd><kbd>→</kbd> или <kbd>A</kbd><kbd>D</kbd></div>
+            <p class="muted" style="font-size:14px">На телефоне — касайся левой или правой половины трассы. ⭐ = +50 очков.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="big-logo" aria-hidden="true">GTA VI</div>
+  <p>Неофициальный фанатский сайт. Не связан с Rockstar Games или Take-Two Interactive. Grand Theft Auto — торговая марка её владельцев. Трейлеры встроены с официального YouTube-канала.</p>
+  <p class="secret">Говорят, на этой странице спрятан секретный код из старых игр…</p>
+</footer>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status"></div>
+<svg class="easter-car" id="easterCar" viewBox="0 0 320 110" aria-hidden="true">
+  <defs><linearGradient id="carG" x1="0" x2="1"><stop offset="0" stop-color="#ff3d9a"/><stop offset="1" stop-color="#ff9a3d"/></linearGradient></defs>
+  <path d="M20 70 L40 48 Q60 40 100 38 L140 18 Q170 10 210 16 L250 38 Q290 42 305 56 L308 74 Q306 82 296 82 L28 82 Q16 82 16 74 Z" fill="url(#carG)"/>
+  <path d="M110 40 L146 22 Q170 16 200 20 L232 40 Z" fill="#3de0ff" opacity=".75"/>
+  <circle cx="80" cy="84" r="20" fill="#07040f" stroke="#3de0ff" stroke-width="4"/>
+  <circle cx="245" cy="84" r="20" fill="#07040f" stroke="#3de0ff" stroke-width="4"/>
+  <rect x="290" y="58" width="16" height="6" rx="3" fill="#ffe46b"/>
+</svg>
+
+<script src="music.js"></script>
+<script src="game.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
