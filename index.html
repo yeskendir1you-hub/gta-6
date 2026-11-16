@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обратный отсчёт до GTA VI</title>
+<meta name="description" content="Неофициальный фанатский таймер обратного отсчёта до выхода GTA VI 19 ноября 2026 года.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0716;
+    --text: #fff6fb;
+    --muted: #c9b8d6;
+    --pink: #ff3d9a;
+    --orange: #ff9a3d;
+    --cyan: #3de0ff;
+    --card: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Закатное небо с солнцем и неоновой сеткой */
+  .sky {
+    position: fixed; inset: 0; z-index: -2;
+    background:
+      radial-gradient(ellipse at 50% 120%, rgba(255, 61, 154, 0.55), transparent 60%),
+      linear-gradient(180deg, #0b0716 0%, #2a0f3d 45%, #6b1d5c 70%, #ff6a5c 100%);
+  }
+  .sun {
+    position: fixed; left: 50%; bottom: 22vh; z-index: -1;
+    width: min(70vw, 520px); aspect-ratio: 1; transform: translateX(-50%);
+    border-radius: 50%;
+    background: linear-gradient(180deg, #ffe46b 0%, var(--orange) 45%, var(--pink) 100%);
+    -webkit-mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px) 0 55% / 100% 100% no-repeat,
+                  linear-gradient(#000, #000) 0 0 / 100% 55% no-repeat;
+            mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px) 0 55% / 100% 100% no-repeat,
+                  linear-gradient(#000, #000) 0 0 / 100% 55% no-repeat;
+    filter: drop-shadow(0 0 60px rgba(255, 106, 92, 0.7));
+    opacity: 0.85;
+  }
+  .grid {
+    position: fixed; left: -50%; right: -50%; bottom: 0; height: 24vh; z-index: -1;
+    background:
+      linear-gradient(transparent 0 96%, rgba(61, 224, 255, 0.6) 96%) 0 0 / 100% 40px,
+      linear-gradient(90deg, transparent 0 98%, rgba(61, 224, 255, 0.6) 98%) 0 0 / 60px 100%,
+      linear-gradient(180deg, #1a0a2e, #0b0716);
+    transform: perspective(300px) rotateX(55deg);
+    transform-origin: bottom;
+    animation: drive 1.6s linear infinite;
+  }
+  @keyframes drive { to { background-position: 0 40px, 0 0, 0 0; } }
+  .palms { position: fixed; bottom: 20vh; z-index: -1; width: 100%; height: 40vh; pointer-events: none; }
+  .palm { position: absolute; bottom: 0; fill: #0b0716; opacity: 0.95; }
+
+  main {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 28px;
+    padding: 48px 16px 120px;
+    text-align: center;
+  }
+  .badge {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(61, 224, 255, 0.4);
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(11, 7, 22, 0.5);
+  }
+  h1 {
+    font-family: "Anton", Impact, sans-serif;
+    font-weight: 400;
+    font-size: clamp(64px, 16vw, 180px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    background: linear-gradient(180deg, #fff 0%, #ffd0e6 40%, var(--pink) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 24px rgba(255, 61, 154, 0.55));
+  }
+  .subtitle {
+    font-size: clamp(16px, 2.4vw, 20px); color: #fff; max-width: 560px;
+    text-shadow: 0 1px 2px rgba(11, 7, 22, 0.9), 0 0 16px rgba(11, 7, 22, 0.8);
+  }
+  .subtitle strong { color: var(--text); }
+
+  .countdown {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(8px, 2vw, 18px);
+    width: 100%; max-width: 760px;
+  }
+  .unit {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: clamp(14px, 3vw, 26px) 6px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 0 1px rgba(255, 61, 154, 0.08), 0 20px 50px rgba(0, 0, 0, 0.35);
+  }
+  .num {
+    font-family: "Anton", Impact, sans-serif;
+    font-size: clamp(40px, 10vw, 96px);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: #fff;
+    text-shadow: 0 0 18px rgba(61, 224, 255, 0.55);
+  }
+  .label {
+    margin-top: 8px;
+    font-size: clamp(11px, 1.8vw, 14px); font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .released {
+    display: none;
+    font-family: "Anton", Impact, sans-serif;
+    font-size: clamp(40px, 9vw, 88px);
+    color: #fff;
+    text-shadow: 0 0 30px var(--pink);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { transform: scale(1.05); } }
+  body.is-out .countdown { display: none; }
+  body.is-out .released { display: block; }
+
+  .info {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  }
+  .chip {
+    font-size: 14px; font-weight: 600;
+    padding: 10px 16px; border-radius: 12px;
+    background: rgba(11, 7, 22, 0.55);
+    border: 1px solid var(--card-border);
+  }
+  .chip span { color: var(--orange); }
+
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    padding: 12px 16px;
+    font-size: 12px; color: var(--muted); text-align: center;
+    background: linear-gradient(transparent, rgba(11, 7, 22, 0.9) 40%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grid, .released { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="sun"></div>
+  <svg class="palms" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g class="palm">
+      <path d="M90 400 C100 300 120 220 150 150 L158 152 C130 225 112 305 104 400 Z"/>
+      <path d="M152 150 C110 120 60 130 20 170 C70 140 110 140 150 160 Z"/>
+      <path d="M152 150 C120 100 80 80 30 90 C80 100 120 120 150 156 Z"/>
+      <path d="M152 150 C170 100 210 80 260 90 C210 100 180 120 156 156 Z"/>
+      <path d="M152 150 C200 125 250 135 290 175 C240 145 200 145 156 160 Z"/>
+      <path d="M152 150 C150 100 160 60 190 30 C170 70 162 110 158 152 Z"/>
+    </g>
+    <g class="palm" transform="translate(1200 0) scale(-1 1)">
+      <path d="M90 400 C100 300 120 220 150 150 L158 152 C130 225 112 305 104 400 Z"/>
+      <path d="M152 150 C110 120 60 130 20 170 C70 140 110 140 150 160 Z"/>
+      <path d="M152 150 C120 100 80 80 30 90 C80 100 120 120 150 156 Z"/>
+      <path d="M152 150 C170 100 210 80 260 90 C210 100 180 120 156 156 Z"/>
+      <path d="M152 150 C200 125 250 135 290 175 C240 145 200 145 156 160 Z"/>
+      <path d="M152 150 C150 100 160 60 190 30 C170 70 162 110 158 152 Z"/>
+    </g>
+  </svg>
+  <div class="grid"></div>
+
+  <main>
+    <div class="badge">Фанатский обратный отсчёт</div>
+    <h1>GTA VI</h1>
+    <p class="subtitle">До выхода игры осталось совсем немного. Дата релиза: <strong>19 ноября 2026</strong>.</p>
+
+    <div class="countdown" role="timer" aria-live="off">
+      <div class="unit"><div class="num" id="d">--</div><div class="label" id="ld">дней</div></div>
+      <div class="unit"><div class="num" id="h">--</div><div class="label" id="lh">часов</div></div>
+      <div class="unit"><div class="num" id="m">--</div><div class="label" id="lm">минут</div></div>
+      <div class="unit"><div class="num" id="s">--</div><div class="label" id="ls">секунд</div></div>
+    </div>
+    <div class="released">GTA VI УЖЕ ВЫШЛА!</div>
+
+    <div class="info">
+      <div class="chip">Платформы: <span>PS5 · Xbox Series X|S</span></div>
+      <div class="chip">Место действия: <span>штат Леонида</span></div>
+    </div>
+  </main>
+
+  <footer>
+    Неофициальный фанатский сайт. Не связан с Rockstar Games или Take-Two Interactive.
+    Таймер считает до полуночи 19 ноября 2026 по вашему местному времени.
+  </footer>
+
+<script>
+  // Дата релиза: полночь 19 ноября 2026 по местному времени посетителя.
+  // Если дату перенесут, достаточно поменять эту строку.
+  const RELEASE = new Date(2026, 10, 19, 0, 0, 0);
+
+  const el = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, "0");
+
+  // Русское склонение: 1 день, 2 дня, 5 дней
+  function plural(n, one, few, many) {
+    const m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+    return many;
+  }
+
+  function tick() {
+    const diff = RELEASE - Date.now();
+    if (diff <= 0) {
+      document.body.classList.add("is-out");
+      document.title = "GTA VI уже вышла!";
+      clearInterval(timer);
+      return;
+    }
+    const total = Math.floor(diff / 1000);
+    const d = Math.floor(total / 86400);
+    const h = Math.floor(total % 86400 / 3600);
+    const m = Math.floor(total % 3600 / 60);
+    const s = total % 60;
+
+    el("d").textContent = d;
+    el("h").textContent = pad(h);
+    el("m").textContent = pad(m);
+    el("s").textContent = pad(s);
+    el("ld").textContent = plural(d, "день", "дня", "дней");
+    el("lh").textContent = plural(h, "час", "часа", "часов");
+    el("lm").textContent = plural(m, "минута", "минуты", "минут");
+    el("ls").textContent = plural(s, "секунда", "секунды", "секунд");
+  }
+
+  const timer = setInterval(tick, 1000);
+  tick();
+</script>
+</body>
+</html>
